@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector , useDispatch } from 'react-redux';
-import { createTodo } from './slice/todosSlice';
+import { createTodo , removeTodo } from './slice/todosSlice';
 
 // 1. 匯入 useDispatch
 // 2. 將剛剛建立的 action 匯入
@@ -26,7 +26,7 @@ function TodoList() {
 
   function addTodo() {
     dispatch(createTodo({
-      id: todos.length + 1,
+      id: new Date().getTime(),
       text: newTodoText,
     }));
     setNewTodoText('');
@@ -51,10 +51,7 @@ function TodoList() {
   }
 
   const deleteTodo = (id) => {
-    // const index = todos.findIndex((todo) => todo.id === id);
-    // const newTodo = [...todos];
-    // newTodo.splice(index, 1);
-    // setTodos(newTodo);
+    dispatch(removeTodo(id));
   }
 
   return (
