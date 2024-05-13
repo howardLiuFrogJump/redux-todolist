@@ -23,6 +23,12 @@ export const todoSLice = createSlice({
       // state = newTodo;
       // console.log(state.length , newTodo.length);
     
+    },
+    updateTodo(state , action){
+      console.log(state, action.payload);
+
+      const index = state.findIndex((todo) => todo.id === action.payload.id);
+      state[index] = action.payload.text;
     }
 
   }
@@ -30,6 +36,6 @@ export const todoSLice = createSlice({
 
 //用 action 具名匯出 reducers 
 
-export const { createTodo , removeTodo } = todoSLice.actions;
+export const { createTodo , removeTodo , updateTodo } = todoSLice.actions;
 
 export default todoSLice.reducer;

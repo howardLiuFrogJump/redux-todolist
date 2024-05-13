@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector , useDispatch } from 'react-redux';
-import { createTodo , removeTodo } from './slice/todosSlice';
+import { createTodo , removeTodo , updateTodo } from './slice/todosSlice';
 
 // 1. 匯入 useDispatch
 // 2. 將剛剛建立的 action 匯入
@@ -33,21 +33,24 @@ function TodoList() {
   }
 
   const editTodo = (e) => {
-    // setEditState({
-    //   ...editState,
-    //   text: e.target.value,
-    // });
+    // console.log('33' , e.target.value);
+ 
+    setEditState({
+      ...editState,
+      text: e.target.value,
+    });
   }
 
   const saveEdit = (id) => {
-    // const index = todos.findIndex((todo) => todo.id === id);
-    // const newTodo = [...todos];
-    // newTodo[index] = editState;
-    // setTodos(newTodo);
-    // setEditState(initState);
+    dispatch(updateTodo({
+      id,
+      text: editState
+    }))
+    setEditState(initState);
+
   }
   const cancelEdit = () => {
-    // setEditState(initState);
+    setEditState(initState);
   }
 
   const deleteTodo = (id) => {
