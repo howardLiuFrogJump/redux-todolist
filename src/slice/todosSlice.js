@@ -10,12 +10,19 @@ export const todoSLice = createSlice({
   ],
   reducers: { // 狀態管理器
     createTodo(state , action){
-      // console.log(state[0].text, action);
+      console.log(state[0].text, action);
       state.push(action.payload);
     },
     removeTodo(state , action){  // 傳入id
-      const index = state.findIndex((todo) => todo.id === action.payload);
-      state.splice(index, 1);
+      // const index = state.findIndex((todo) => todo.id === action.payload);
+      // state.splice(index, 1);
+
+      // 覆蓋state  直接return
+      return state.filter((todo) => todo.id !== action.payload);
+      // newTodo = state.filter((todo) => todo.id !== action.payload);
+      // state = newTodo;
+      // console.log(state.length , newTodo.length);
+    
     }
 
   }
