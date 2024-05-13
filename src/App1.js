@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
+import { createTodo } from './slice/todosSlice';
+
+// 1. 匯入 useDispatch
+// 2. 將剛剛建立的 action 匯入
 
 const initState = {
   id: '',
@@ -17,15 +21,15 @@ function TodoList() {
     return state.todos
   })
   const [newTodoText, setNewTodoText] = useState(''); 
-  const [editState, setEditState] = useState(initState)
+  const [editState, setEditState] = useState(initState);
+  const dispatch = useDispatch();
 
   function addTodo() {
-    // const newTodo = {
-    //   id: todos.length + 1,
-    //   text: newTodoText,
-    // };
-    // setTodos([...todos, newTodo]);
-    // setNewTodoText('');
+    dispatch(createTodo({
+      id: todos.length + 1,
+      text: newTodoText,
+    }));
+    setNewTodoText('');
   }
 
   const editTodo = (e) => {
