@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const initState = {
   id: '',
@@ -6,47 +7,50 @@ const initState = {
 };
 
 function TodoList() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '這是一段話 copy'
-    }
-  ]);
+  // const [todos, setTodos] = useState([
+  //   {
+  //     id: 1,
+  //     text: '這是一段話 copy'
+  //   }
+  // ]);
+  const todos = useSelector((state)=>{
+    return state.todos
+  })
   const [newTodoText, setNewTodoText] = useState(''); 
   const [editState, setEditState] = useState(initState)
 
   function addTodo() {
-    const newTodo = {
-      id: todos.length + 1,
-      text: newTodoText,
-    };
-    setTodos([...todos, newTodo]);
-    setNewTodoText('');
+    // const newTodo = {
+    //   id: todos.length + 1,
+    //   text: newTodoText,
+    // };
+    // setTodos([...todos, newTodo]);
+    // setNewTodoText('');
   }
 
   const editTodo = (e) => {
-    setEditState({
-      ...editState,
-      text: e.target.value,
-    });
+    // setEditState({
+    //   ...editState,
+    //   text: e.target.value,
+    // });
   }
 
   const saveEdit = (id) => {
-    const index = todos.findIndex((todo) => todo.id === id);
-    const newTodo = [...todos];
-    newTodo[index] = editState;
-    setTodos(newTodo);
-    setEditState(initState);
+    // const index = todos.findIndex((todo) => todo.id === id);
+    // const newTodo = [...todos];
+    // newTodo[index] = editState;
+    // setTodos(newTodo);
+    // setEditState(initState);
   }
   const cancelEdit = () => {
-    setEditState(initState);
+    // setEditState(initState);
   }
 
   const deleteTodo = (id) => {
-    const index = todos.findIndex((todo) => todo.id === id);
-    const newTodo = [...todos];
-    newTodo.splice(index, 1);
-    setTodos(newTodo);
+    // const index = todos.findIndex((todo) => todo.id === id);
+    // const newTodo = [...todos];
+    // newTodo.splice(index, 1);
+    // setTodos(newTodo);
   }
 
   return (
